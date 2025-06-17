@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}BBS Terminal - Classic Text Interface{% endblock %}
+
+{% block content %}
+<div class="bbs-interface">
+    <div class="bbs-header">
+        <h1>📞 Text-Only BBS Terminal</h1>
+        <p>Authentic 1980s bulletin board system experience</p>
+        <div class="connection-status">
+            <span id="bbs-status">Disconnected</span>
+        </div>
+    </div>
+
+    <div class="bbs-container">
+        <div class="bbs-terminal">
+            <div class="terminal-header">
+                <span class="terminal-title">📞 BBS Terminal</span>
+                <div class="terminal-controls">
+                    <span class="control-btn close" onclick="window.location.href='{{ url_for('index') }}'">×</span>
+                </div>
+            </div>
+            <div class="terminal-body">
+                <div id="bbs-output" class="terminal-output"></div>
+                <div class="terminal-input-line">
+                    <span class="prompt" id="bbs-prompt">&gt;</span>
+                    <input type="text" id="bbs-input" class="terminal-input" placeholder="Connecting to BBS..." disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="bbs-sidebar">
+            <div class="bbs-info">
+                <h3>BBS Information</h3>
+                <div id="bbs-user">Not connected</div>
+                <div class="bbs-stats">
+                    <small>Session started: <span id="session-time">--</span></small>
+                </div>
+            </div>
+            
+            <div class="bbs-help">
+                <h3>BBS Commands</h3>
+                <div class="help-content">
+                    <p><strong>Navigation:</strong></p>
+                    <ul>
+                        <li><code>M</code> or <code>1</code> - Messages</li>
+                        <li><code>D</code> or <code>2</code> - Door Games</li>
+                        <li><code>U</code> or <code>3</code> - User List</li>
+                        <li><code>H</code> or <code>4</code> - Help</li>
+                        <li><code>T</code> or <code>5</code> - Time</li>
+                        <li><code>Q</code> - Quit/Logoff</li>
+                        <li><code>B</code> - Back (in submenus)</li>
+                    </ul>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Secure user registration</li>
+                        <li>Rate limiting protection</li>
+                        <li>Session management</li>
+                        <li>Input validation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bbs-controls">
+                <button id="bbs-connect-btn" class="btn btn-primary">Connect to BBS</button>
+                <button id="bbs-disconnect-btn" class="btn btn-secondary" disabled>Disconnect</button>
+                <button id="bbs-clear-btn" class="btn btn-secondary">Clear Screen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bbs-footer">
+        <div class="bbs-notice">
+            <h3>About This BBS</h3>
+            <p>
+                This is a secure, web-based recreation of a classic 1980s Bulletin Board System (BBS). 
+                It features authentic text-only navigation, user registration, message areas, and door games.
+                All input is validated and sanitized for security.
+            </p>
+            <p>
+                <strong>Security Features:</strong> Input validation, rate limiting, secure password hashing, 
+                session timeouts, and comprehensive logging protect against modern threats while 
+                maintaining the classic BBS experience.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+<script src="{{ url_for('static', filename='js/bbs.js') }}"></script>
+<script>
+    // Initialize BBS interface
+    initializeBBS();
+</script>
+{% endblock %}
+

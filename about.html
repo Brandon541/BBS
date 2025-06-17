@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}About - BBS Door Games{% endblock %}
+
+{% block content %}
+<div class="about-page">
+    <div class="about-header">
+        <h1>About BBS Door Games</h1>
+        <p class="lead">A nostalgic journey back to the golden age of computing</p>
+    </div>
+
+    <div class="about-content">
+        <section class="history-section">
+            <h2>📞 The BBS Era (1980s-1990s)</h2>
+            <div class="ascii-art">
+                <pre>
+┌────────────────────────────────────────────────┐
+│    💻 WELCOME TO DIGITAL UNDERGROUND BBS 💻      │
+│                                                │
+│  [M]essages  [F]iles  [D]oor Games  [C]hat    │
+│                                                │
+│  Connected at 1200 baud - 45 mins remaining   │
+│  Users online: 1/4                            │
+└────────────────────────────────────────────────┘
+                </pre>
+            </div>
+            <p>
+                Before the World Wide Web dominated the internet, Bulletin Board Systems (BBSs) 
+                were the primary way for computer enthusiasts to connect and share information. 
+                Users would dial in using modems, often waiting for busy signals, to access 
+                these digital communities.
+            </p>
+            <p>
+                BBSs offered message boards, file downloads, and most memorably, "door games" - 
+                external programs that provided interactive entertainment. These games were often 
+                the main attraction, drawing users back day after day.
+            </p>
+        </section>
+
+        <section class="door-games-section">
+            <h2>📝 What Were Door Games?</h2>
+            <p>
+                Door games were called "doors" because they were external programs that users 
+                could "enter" from the main BBS menu. When a user selected a door game, they 
+                would temporarily leave the BBS software and enter the game's interface.
+            </p>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>⏰ Turn-Based Gameplay</h3>
+                    <p>Most games limited players to a certain number of "turns" per day, encouraging daily visits.</p>
+                </div>
+                <div class="feature">
+                    <h3>💾 Persistent Worlds</h3>
+                    <p>Player progress was saved between sessions, creating ongoing virtual worlds.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏆 Competition</h3>
+                    <p>High scores and player rankings fostered friendly competition among BBS users.</p>
+                </div>
+                <div class="feature">
+                    <h3>🎭 Role-Playing</h3>
+                    <p>Many games featured character development, combat, and exploration.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="popular-games-section">
+            <h2>🎮 Popular BBS Door Games</h2>
+            <div class="games-list">
+                <div class="game-info">
+                    <h3>Legend of the Red Dragon (LORD)</h3>
+                    <p>The most famous door game, featuring fantasy combat, romance, and daily adventures.</p>
+                </div>
+                <div class="game-info">
+                    <h3>Trade Wars 2002</h3>
+                    <p>A space trading and combat game where players built galactic empires.</p>
+                </div>
+                <div class="game-info">
+                    <h3>Global Wars</h3>
+                    <p>Military strategy game with territorial conquest and resource management.</p>
+                </div>
+                <div class="game-info">
+                    <h3>Usurper</h3>
+                    <p>Dark fantasy game with unique graphics and engaging storylines.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="technical-section">
+            <h2>⚙️ Technical Details</h2>
+            <p>
+                This web-based recreation captures the essence of BBS door games while adapting 
+                them for modern browsers. The games are built with:
+            </p>
+            <ul>
+                <li><strong>Python/Flask Backend:</strong> Game logic and session management</li>
+                <li><strong>WebSocket Communication:</strong> Real-time interaction between browser and server</li>
+                <li><strong>Retro Styling:</strong> CSS that mimics classic terminal interfaces</li>
+                <li><strong>Persistent Data:</strong> Player progress saved between sessions</li>
+            </ul>
+        </section>
+
+        <section class="nostalgia-section">
+            <h2>💭 Why This Matters</h2>
+            <p>
+                BBS door games represent a unique period in computing history when online 
+                communities were small, personal, and innovative. They pioneered many concepts 
+                we take for granted today: persistent online worlds, user-generated content, 
+                and social gaming.
+            </p>
+            <p>
+                This project preserves that spirit for new generations while allowing veterans 
+                to relive the magic of dialing into their favorite BBS at 2 AM to check if 
+                they'd been killed in Trade Wars overnight.
+            </p>
+        </section>
+    </div>
+
+    <div class="about-footer">
+        <p>
+            <strong>"Remember when the internet was 40 characters wide?"</strong><br>
+            — Every BBS veteran, probably
+        </p>
+    </div>
+</div>
+{% endblock %}
+

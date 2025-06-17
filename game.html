@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}{{ game_info.name }} - BBS Door Games{% endblock %}
+
+{% block content %}
+<div class="game-interface">
+    <div class="game-header">
+        <h1>{{ game_info.name }}</h1>
+        <p>{{ game_info.description }}</p>
+        <div class="connection-status">
+            <span id="status">Disconnected</span>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="terminal-title">📞 {{ game_info.name }}</span>
+                <div class="terminal-controls">
+                    <span class="control-btn close" onclick="window.location.href='{{ url_for('index') }}'">×</span>
+                </div>
+            </div>
+            <div class="terminal-body">
+                <div id="output" class="terminal-output"></div>
+                <div class="terminal-input-line">
+                    <span class="prompt" id="prompt">&gt;</span>
+                    <input type="text" id="input" class="terminal-input" placeholder="Enter your name to begin..." disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-sidebar">
+            <div class="player-info">
+                <h3>Player Info</h3>
+                <div id="player-name">Not connected</div>
+            </div>
+            
+            <div class="game-help">
+                <h3>Quick Help</h3>
+                <div class="help-content">
+                    <p><strong>Commands vary by game:</strong></p>
+                    <ul>
+                        <li><code>help</code> - Show available commands</li>
+                        <li><code>stats</code> - View player statistics</li>
+                        <li><code>quit</code> - Exit the game</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button id="connect-btn" class="btn btn-primary" disabled>Connect</button>
+                <button id="disconnect-btn" class="btn btn-secondary" disabled>Disconnect</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+<script src="{{ url_for('static', filename='js/game.js') }}"></script>
+<script>
+    // Initialize game with specific game ID
+    const gameId = '{{ game_id }}';
+    initializeGame(gameId);
+</script>
+{% endblock %}
+

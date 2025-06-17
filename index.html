@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}BBS Door Games - Classic Text Games{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Welcome to the BBS Door Games</h1>
+        <p class="hero-subtitle">Step back in time to the golden age of bulletin board systems</p>
+        <div class="hero-ascii">
+            <pre>
+ ╭──────────────────────────────────╮
+ │   CONNECTING TO BBS AT 1200 BAUD │
+ │                                  │
+ │     Choose your door game:       │
+ ╰──────────────────────────────────╯
+            </pre>
+        </div>
+    </div>
+</div>
+
+<div class="games-grid">
+    {% for game in games %}
+    <div class="game-card">
+        <div class="game-header">
+            <h3 class="game-title">{{ game.name }}</h3>
+            <div class="game-badges">
+                <span class="badge badge-genre">{{ game.genre }}</span>
+                <span class="badge badge-difficulty badge-{{ game.difficulty.lower() }}">{{ game.difficulty }}</span>
+            </div>
+        </div>
+        <p class="game-description">{{ game.description }}</p>
+        <div class="game-actions">
+            <a href="{{ url_for('game_page', game_id=game.id) }}" class="btn btn-primary">
+                📝 Enter Door
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="info-section">
+    <h2>About BBS Door Games</h2>
+    <p>
+        Before the World Wide Web, computer enthusiasts connected to Bulletin Board Systems (BBSs)
+        using dial-up modems. "Door games" were external programs that users could launch from
+        the BBS menu, offering everything from combat adventures to trading simulations.
+    </p>
+    <p>
+        This collection recreates that nostalgic experience with faithful Python implementations
+        of classic door games, now playable in your web browser!
+    </p>
+</div>
+{% endblock %}
