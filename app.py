@@ -89,6 +89,13 @@ def index():
             'description': 'Number Guessing Game - Guess the number, win big!',
             'genre': 'Casino/Luck',
             'difficulty': 'Easy'
+        },
+        {
+            'id': 'trade_wars',
+            'name': 'Trade Wars',
+            'description': 'Classic Space Trading & Conquest - Build an empire among the stars!',
+            'genre': 'Trading/Strategy',
+            'difficulty': 'Hard'
         }
     ]
     return render_template('index.html', games=games)
@@ -96,7 +103,7 @@ def index():
 @app.route('/game/<game_id>')
 def game_page(game_id):
     """Game interface page"""
-    valid_games = ['the_pit', 'galactic_conquest', 'hilo_casino']
+    valid_games = ['the_pit', 'galactic_conquest', 'hilo_casino', 'trade_wars']
     if game_id not in valid_games:
         return redirect(url_for('index'))
     
@@ -112,6 +119,10 @@ def game_page(game_id):
         'hilo_casino': {
             'name': 'Hi-Lo Casino',
             'description': 'Number Guessing Game'
+        },
+        'trade_wars': {
+            'name': 'Trade Wars',
+            'description': 'Classic Space Trading & Conquest'
         }
     }
     
@@ -161,6 +172,9 @@ def handle_start_game(data):
         start_galactic_game(session_id, player_name)
     elif game_id == 'hilo_casino':
         start_hilo_game(session_id, player_name)
+    elif game_id == 'trade_wars':
+        start_trade_wars_game(session_id, player_name)
+    
     
     emit('game_started', {'game_id': game_id, 'player_name': player_name})
 
@@ -183,6 +197,9 @@ def handle_game_input(data):
         process_galactic_input(session_id, user_input)
     elif game_session.game_type == 'hilo_casino':
         process_hilo_input(session_id, user_input)
+    elif game_session.game_type == 'trade_wars':
+        process_trade_wars_input(session_id, user_input)
+
 
 # BBS Socket Handlers
 @socketio.on('bbs_input')
@@ -356,6 +373,97 @@ def process_hilo_input(session_id, user_input):
         game_session.set_input_prompt("Enter command: ")
     
     emit_game_output(session_id)
+
+
+def start_trade_wars_game(session_id, player_name):
+    """Start Trade Wars game"""
+    game_session = active_sessions[session_id]
+    game_session.add_output("\n" + "="*60)
+    game_session.add_output("                    T R A D E   W A R S")
+    game_session.add_output("                 Space Conquest & Trading")
+    game_session.add_output("=" * 60)
+    game_session.add_output("")
+    game_session.add_output("The year is 2391. Humanity has spread across the galaxy")
+    game_session.add_output("in a network of interconnected space lanes. You are a")
+    game_session.add_output("trader, warrior, and explorer in this vast frontier.")
+    game_session.add_output("")
+    game_session.add_output("Your mission: Build an empire among the stars!")
+    game_session.add_output("")
+    game_session.add_output("Commands:")
+    game_session.add_output("  [M]ove to sector    [T]rade at port     [P]lanet operations")
+    game_session.add_output("  [A]ttack fighters   [D]eploy fighters   [S]can sector")
+    game_session.add_output("  [C]omputer          [R]eport            [Q]uit game")
+    game_session.add_output("")
+    game_session.add_output("Loading commander profile...")
+    game_session.add_output(f"Welcome back, Commander {player_name}!")
+    game_session.add_output("Starting in Sector 1 with basic ship and 5000 credits.")
+    game_session.add_output("")
+    game_session.set_input_prompt("Enter command: ")
+
+def process_trade_wars_input(session_id, user_input):
+    """Process input for Trade Wars"""
+    game_session = active_sessions[session_id]
+    cmd = user_input.lower().strip()
+    
+    if cmd in ['m', 'move']:
+        game_session.add_output("\n🚀 SECTOR MOVEMENT")
+        game_session.add_output("Available warp gates from Sector 1:")
+        game_session.add_output("  1. Sector 2 (Port: Stardock)")
+        game_session.add_output("  2. Sector 5 (Planet: Earth Prime)")
+        game_session.add_output("  3. Sector 7 (Empty space)")
+        game_session.add_output("\nMoved to Sector 2 - Stardock Trading Post")
+    elif cmd in ['t', 'trade']:
+        game_session.add_output("\n🏪 STARDOCK TRADING POST")
+        game_session.add_output("Available goods:")
+        game_session.add_output("  Fuel Ore: 15 credits/unit")
+        game_session.add_output("  Organics: 25 credits/unit")
+        game_session.add_output("Your credits: 5,000 | Cargo space: 20/20 holds")
+        game_session.add_output("\nPurchased 10 Fuel Ore for 150 credits!")
+    elif cmd in ['p', 'planet']:
+        game_session.add_output("\n🌍 PLANET OPERATIONS")
+        game_session.add_output("Planet: Earth Prime (Class M)")
+        game_session.add_output("Status: Unexplored - Available for colonization")
+        game_session.add_output("Cost: 10,000 credits")
+        game_session.add_output("\nNeed more credits to colonize this planet.")
+    elif cmd in ['a', 'attack']:
+        game_session.add_output("\n⚔️  COMBAT ENGAGEMENT")
+        game_session.add_output("Scanning for enemy fighters...")
+        game_session.add_output("No enemy forces detected in this sector.")
+    elif cmd in ['s', 'scan']:
+        game_session.add_output("\n🔍 LONG RANGE SCAN")
+        game_session.add_output("Adjacent sectors:")
+        game_session.add_output("  Sector 1: Starting point")
+        game_session.add_output("  Sector 3: Port(Ore Refinery)")
+        game_session.add_output("  Sector 4: Planet(Mining Colony)")
+        game_session.add_output("  Sector 6: Fighters(15)")
+    elif cmd in ['r', 'report']:
+        game_session.add_output("\n📄 COMMANDER REPORT")
+        game_session.add_output(f"Commander: {game_session.player_name}")
+        game_session.add_output("Rank: Harmless")
+        game_session.add_output("Credits: 4,850 | Experience: 0")
+        game_session.add_output("Planets Owned: 0 | Sectors Controlled: 0")
+        game_session.add_output("Ship: Merchant Cruiser | Fighters: 10")
+    elif cmd in ['c', 'computer']:
+        game_session.add_output("\n💻 SHIP COMPUTER")
+        game_session.add_output("Trade Wars Database Online")
+        game_session.add_output("\nRecommended trade routes:")
+        game_session.add_output("  - Buy Fuel Ore (15cr) -> Sell to Stardock (20cr)")
+        game_session.add_output("  - Buy Organics (25cr) -> Sell to Industrial (35cr)")
+        game_session.add_output("  - Buy Equipment (50cr) -> Sell to Agricultural (75cr)")
+    elif cmd in ['q', 'quit']:
+        game_session.add_output("\n👋 Thanks for playing Trade Wars!")
+        game_session.add_output("Your progress has been saved.")
+        game_session.add_output("May the stars guide your journey, Commander!")
+        game_session.game_state = "ended"
+    else:
+        game_session.add_output(f"\nUnknown command: {user_input}")
+        game_session.add_output("Available: [M]ove, [T]rade, [P]lanet, [A]ttack, [S]can, [R]eport, [C]omputer, [Q]uit")
+    
+    if game_session.game_state != "ended":
+        game_session.set_input_prompt("Enter command: ")
+    
+    emit_game_output(session_id)
+
 
 def emit_game_output(session_id):
     """Send game output to client"""
