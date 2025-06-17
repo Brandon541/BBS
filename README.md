@@ -5,18 +5,14 @@ A complete recreation of classic Bulletin Board System (BBS) door games with bot
 ## 🎮 Two Ways to Play
 
 ### 1. Modern Web Interface
-
 Play in your browser with a retro terminal interface:
-
 - Real-time WebSocket gameplay
 - Responsive design for desktop and mobile
 - Authentic green-on-black terminal styling
-- **Start**: `python3 app.py` → visit <http://localhost:5001>
+- **Start**: `python3 app.py` → visit http://localhost:5001
 
 ### 2. Authentic BBS Experience
-
 Connect via telnet for the true 1980s experience:
-
 - Text-only interface with ASCII art
 - Secure hardened server with input validation
 - Rate limiting and abuse prevention
@@ -25,26 +21,20 @@ Connect via telnet for the true 1980s experience:
 ## 🕹️ Games Included
 
 ### **The Pit** - Gladiator Combat Game
-
 Fight monsters in the arena, gain experience, and climb the ranks!
-
 - Turn-based combat system
 - Character progression and equipment
 - Multiple monster types with scaling difficulty
 
 ### **Galactic Conquest** - Space Trading Game
-
 Trade goods across the galaxy, upgrade your ship, and build your fortune!
-
 - Multi-planet trading simulation
 - Dynamic market prices
 - Ship upgrades and cargo management
 - Random events and space encounters
 
 ### **Hi-Lo Casino** - Number Guessing Game
-
 Guess the number, win big with multiple difficulty levels!
-
 - Variable difficulty settings with different payouts
 - Streak bonuses and statistics tracking
 - Credit exchange system
@@ -60,7 +50,6 @@ Guess the number, win big with multiple difficulty levels!
 ## 🚀 Quick Start
 
 ### Web Interface
-
 ```bash
 # Install dependencies
 pip install -r requirements.txt
@@ -73,7 +62,6 @@ open http://localhost:5001
 ```
 
 ### BBS Server
-
 ```bash
 # Start BBS (no dependencies needed)
 cd bbs_server
@@ -84,7 +72,6 @@ telnet localhost 2323
 ```
 
 ### Standalone Games
-
 ```bash
 # Play games directly in terminal
 cd games
@@ -124,14 +111,12 @@ bbs-door-games/
 ## 🌐 Technology Stack
 
 ### Web Interface
-
 - **Backend**: Python 3.9+ with Flask and Socket.IO
 - **Frontend**: HTML5, CSS3, JavaScript with WebSocket communication
 - **Styling**: Retro terminal theme with CSS animations
 - **Real-time**: WebSocket-based game interaction
 
 ### BBS Server
-
 - **Pure Python**: No external dependencies, standard library only
 - **Network**: Raw TCP socket server with telnet protocol
 - **Database**: SQLite with parameterized queries
@@ -162,13 +147,11 @@ This project recreates that authentic experience while adding modern security an
 ## 🎨 Screenshots
 
 ### Web Interface
-
 - Modern browser-based terminal interface
 - Real-time gameplay with WebSocket communication
 - Mobile-responsive design
 
 ### BBS Interface
-
 - Authentic text-only experience
 - ASCII art and classic menu systems
 - Telnet connectivity for true retro feel
@@ -176,7 +159,6 @@ This project recreates that authentic experience while adding modern security an
 ## 🤝 Contributing
 
 We welcome contributions! Ideas for new games:
-
 - **Legend of the Red Dragon (LORD)** - Fantasy adventure with romance
 - **Trade Wars 2002** - Multi-player space conquest
 - **Usurper** - Dark fantasy with unique graphics
@@ -190,7 +172,7 @@ This project is open source and available under the MIT License.
 ---
 
 ### 🎭 "Remember when the internet was 40 characters wide?"
-
 *A nostalgic journey back to the golden age of bulletin board systems*
 
-**Connect today**: `telnet localhost 2323` or visit <http://localhost:5001>
+**Connect today**: `telnet localhost 2323` or visit http://localhost:5001
+
