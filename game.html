@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends "base.html" %}
 
 {% block title %}{{ game_info.name }} - BBS Door Games{% endblock %}
@@ -17,7 +18,7 @@
             <div class="terminal-header">
                 <span class="terminal-title">📞 {{ game_info.name }}</span>
                 <div class="terminal-controls">
-                    <span class="control-btn close" onclick="window.location.href='{{ url_for('index') }}'">×</span>
+                    <span class="control-btn close" onclick="window.location.href='{{ url_for('index') }}'">x</span>
                 </div>
             </div>
             <div class="terminal-body">
